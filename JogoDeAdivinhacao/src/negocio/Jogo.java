@@ -58,6 +58,14 @@ public class Jogo {
 
 		return false;
 	}
+	
+	public void dicaAcerto(int numero) {
+		if (verificarMenor(numero)) {
+			tela.mesagem("tente um numero maior");
+		} else {
+			tela.mesagem("Tente numero menor");
+		}
+	}
 
 	public void verificarAcerto() {
 		int numero = solicitarNumero();
@@ -68,12 +76,7 @@ public class Jogo {
 		} else {
 			tela.mesagem("Deu ruim,  voce errou");
 			jogador.setNumeroTentativa();
-
-			if (verificarMenor(numero)) {
-				tela.mesagem("tente um numero maior");
-			} else {
-				tela.mesagem("Tente numero menor");
-			}
+			dicaAcerto(numero);
 		}
 	}
 
