@@ -14,10 +14,14 @@ public class Jogo {
 		tela = new Tela();
 		terminal = new Terminal();
 		jogador = new Jogador();
-		numeroEscolhido = 50;
+		numeroEscolhido = sortearSegredo();
 		jogando = true;
 	}
 
+	public int sortearSegredo() {
+		return (int)(Math.random() * 100);
+	}
+	
 	public void inciarJogoTerminal() {
 		jogador.setNome(terminal.entradaNome());
 		terminal.mesagem("Seja bem vindo: " + jogador.getNome());
