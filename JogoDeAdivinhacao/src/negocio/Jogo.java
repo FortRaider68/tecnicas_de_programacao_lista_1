@@ -45,7 +45,7 @@ public class Jogo {
 	}
 	
 	private String solicitarEntrada() {
-		return tela.entradaDados("Informe um numero:");
+		return tela.entradaDados("NÚMERO DE JOGADAS:"+ jogador.getNumeroTentativa()+"\n\nInforme um numero:");
 	}
 	
 	public int solicitarNumero() {
