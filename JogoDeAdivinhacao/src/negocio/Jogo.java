@@ -9,6 +9,7 @@ public class Jogo {
 	private Terminal terminal;
 	private int numeroEscolhido;
 	private boolean jogando;
+	private int numero;
 
 	public Jogo() {
 		tela = new Tela();
@@ -33,9 +34,27 @@ public class Jogo {
 		jogadas();
 	}
 
+	private boolean validarNumero(String entrada) {
+		try {
+			this.numero = Integer.parseInt(entrada);
+			return true;
+		} catch (Exception e) {
+			tela.mesagem("Parece que o que você digitou não é um numero. Tente outra vez.");
+			return false;
+		}
+	}
+	
+	private String solicitarEntrada() {
+		return tela.entradaDados("Informe um numero:");
+	}
+	
 	public int solicitarNumero() {
-		String numero = tela.entradaDados("Informe um numero:");
-		return Integer.parseInt(numero);
+		String entrada = "";
+		do {
+			entrada = solicitarEntrada();
+		}while(!validarNumero(entrada));
+		
+		return this.numero;
 	}
 
 	public void jogadas() {
