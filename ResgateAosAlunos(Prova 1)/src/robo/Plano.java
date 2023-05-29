@@ -42,7 +42,7 @@ public class Plano {
 	public Celula retornarCelula(int x, int y) {
 
 		for (int i = 0; i < listaCelulas.size(); i++) {
-			if (listaCelulas.get(i).posicaoX == x && listaCelulas.get(i).posicaoY == y) {
+			if (listaCelulas.get(i).getPosicaoX() == x && listaCelulas.get(i).getPosicaoY() == y) {
 				return listaCelulas.get(i);
 			}
 		}

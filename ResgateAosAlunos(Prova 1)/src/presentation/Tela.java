@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public abstract class Tela {
 	
-	private static Scanner entrada;
+	private Scanner entrada;
 	public static boolean cli;
 	private String message;
 	
@@ -28,7 +28,7 @@ public abstract class Tela {
 		}
 	}
 	
-	public abstract void imprimi();
+	public abstract void imprimir();
 	
 	
 	protected String lerEntrada() {

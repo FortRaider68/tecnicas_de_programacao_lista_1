@@ -1,32 +1,38 @@
 package presentation;
 
+import robo.Celula;
 import robo.Jogo;
 import robo.Plano;
 
 public class Rodada extends Tela {
-	Plano plano;
-	Jogo jogo;
+	private Plano plano;
+	private Jogo jogo;
+	private String roboDaVez;
 	
 	public Rodada(Plano plano, Jogo jogo) {
+		super();
 		this.plano = plano;
 		this.jogo = jogo;
+		this.roboDaVez ="";
 	}
 	
-	private void imprimirTela() {
+	public void imprimir() {
 		limparTela();
+		//Essa parte for um pé no saco de fazer :|
 		for (int i = plano.getTamanhoY(); i > 0 ; i--) {
 			for (int j = 0; j < plano.getTamanhoX(); j++) {
-				char simbolo = plano.getListaCelulas().get(i*(plano.getTamanhoY()-1)+j).getSimbolo();
+				int index = i + j * plano.getTamanhoY()-1;
+				Celula aux = plano.getListaCelulas().get(index);
+				char simbolo = aux.getSimbolo();
 				System.out.print(" ["+simbolo+"] ");
 			}
-			
 			barraLateral(i);
 			System.out.print("\n");
 		}
-		
+		System.out.print("\n");
 		System.out.println("(Insira 'q' para sair.)");
 		System.out.println("Insira (Ação:n° de passos):");
-		
+		setMessage("");
 	}
 
 	private void barraLateral(int i) {
@@ -45,25 +51,25 @@ public class Rodada extends Tela {
 	
 	private void imprimirRoboNome(int linha) {
 		if(linha ==1) {
-			System.out.print("\tRobô:"+"ANDADOR");
+			System.out.print("\tRobô:"+this.roboDaVez);
 		}
 	}
 	
 	private void imprimirMensagem(int linha) {
-		if(linha == 2) {
-			System.out.print("\tMensagem: "+"Oi mãe :)");
+		if(linha == 2 && getMessage() != null) {
+			System.out.print("\t"+getMessage().toUpperCase());
 		} 
 	}
 	
 	private void imprimirAcoes(int linha) {
 		switch (linha) {
-		case 3:
+		case 4:
 			System.out.print("\tAÇÕES:");
 			break;
-		case 4:
+		case 5:
 			System.out.print("\t1:Avançar");
 			break;
-		case 5:
+		case 6:
 			System.out.print("\t2:Retroceder");
 			break;
 		default:
@@ -71,9 +77,19 @@ public class Rodada extends Tela {
 		}
 	}
 	
-	@Override
-	public void imprimi() {
-		imprimirTela();
-		
+	public String [] prompt() {
+		imprimir();
+		String [] tokens = promptToken(":");
+		return tokens;
 	}
+
+	public String getRoboDaVez() {
+		return roboDaVez;
+	}
+
+	public void setRoboDaVez(String roboDaVez) {
+		this.roboDaVez = roboDaVez;
+	}
+	
+	
 }

@@ -12,7 +12,6 @@ public class Main {
 			}
 		}
 		
-//		Plano p = new Plano(2, 2);
 		Jogo jogo = new Jogo();
 		jogo.jogar();
 			
