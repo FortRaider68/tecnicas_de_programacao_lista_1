@@ -7,7 +7,7 @@ public class Celula {
 	private int posicaoX;
 	private int posicaoY;
 	private int id;
-	private ArrayList<Personagem> personagens;	
+	private ArrayList<Personagem> personagens;
 	private char simbolo;
 	
 	public Celula(int id, int x , int y) {
@@ -52,7 +52,13 @@ public class Celula {
 		if(personagens.isEmpty()) {
 			this.simbolo = '.';
 		}else {
-			this.simbolo = this.personagens.get(this.personagens.size()-1).getSimbolo();
+			Personagem aux = this.personagens.get(this.personagens.size()-1);
+			if(aux.getNome() == "Bug" || aux.getNome() == "Aluno") {
+				this.simbolo = '.';
+			}else {
+				this.simbolo = aux.getSimbolo();
+			}
+			
 		}
 	}
 }

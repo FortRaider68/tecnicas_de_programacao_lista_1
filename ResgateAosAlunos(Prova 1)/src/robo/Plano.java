@@ -2,6 +2,10 @@ package robo;
 
 import java.util.ArrayList;
 
+import robo.jogadores.Robo;
+import robo.npcs.Aluno;
+import robo.npcs.Bug;
+
 public class Plano {
 
 	private ArrayList<Celula> listaCelulas;
@@ -29,13 +33,56 @@ public class Plano {
 		}
 	}
 
-	public void verificarSeTemRobo() {
+	public void spawnNPCs(int bugs, int alunos) {
+		for (int i = bugs; i >0;) {
+			int x = (int)(Math.random() * this.tamanhoX);
+			int y = (int)(Math.random() * this.tamanhoY);
+			
+			Celula aux = getCelula(x, y);
+			if(aux != null) {
+				if(aux.getPersonagem().isEmpty()) {
+					Personagem bug = new Bug(this);
+					aux.setPersonagem(bug);
+					i--;
+				}
+			}
+			
+		}
+		
+		for (int i = alunos; i >0;) {
+			int x = (int)(Math.random() * this.tamanhoX);
+			int y = (int)(Math.random() * this.tamanhoY);
+			
+			Celula aux = getCelula(x, y);
+			if(aux != null) {
+				if(aux.getPersonagem().isEmpty()) {
+					Personagem bug = new Aluno(this);
+					aux.setPersonagem(bug);
+					i--;
+				}
+			}
+			
+		}
+		
+		
+	}
+	
+	public Celula getCelula(int x, int y) {
 		for (int i = 0; i < listaCelulas.size(); i++) {
 			Celula aux = listaCelulas.get(i);
-			if (listaCelulas.get(i).robo != null) {
-				System.out.println("tem robo" + aux.robo.nome + "  - x: " + aux.posicaoX + "  - y: " + aux.posicaoY);
-			}
+			if(aux.getPosicaoX() == x && aux.getPosicaoY() == y)
+				return aux;
 		}
+		return null;
+	}
+	
+	public boolean verificarSeTemAlguem(Personagem personagem,int x, int y) {
+		for (int i = 0; i < listaCelulas.size(); i++) {
+			Celula aux = listaCelulas.get(i);
+			if(aux.getPosicaoX() == x && aux.getPosicaoY() == y && aux.getPersonagem().contains(personagem))
+				return true;
+		}
+		return false;
 	}
 
 

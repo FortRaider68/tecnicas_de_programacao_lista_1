@@ -27,11 +27,11 @@ public class Jogo {
 		setTamanhoPlano(prompt.promptPlanoParametros());
 		setQuantidadeBugs(prompt.promptQuantidadeBugs(maximoNumeroNPC()/2));
 		setQuantidadeAlunos(prompt.promptQuantidadeAlunos(maximoNumeroNPC()-quantidadeBugs));
-		//prompt.fecharEntrada();
+		spawnRobos();
+		this.plano.spawnNPCs(this.quantidadeBugs, this.quantidadeAlunos);
 		this.rodada = 0;
 		this.alunoResgatados = 0;
 		this.exit = false;
-		spawnRobos();
 	}
 	
 	public void jogar() {

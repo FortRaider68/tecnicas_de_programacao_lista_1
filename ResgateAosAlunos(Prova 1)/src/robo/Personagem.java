@@ -25,7 +25,7 @@ public abstract class Personagem {
 		this.nome = nome;
 		this.plano = plano;
 		this.simbolo = simbolo;
-		sortearPosicao();
+		//sortearPosicao();
 	}
 
 	public char getSimbolo() {
