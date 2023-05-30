@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 import presentation.*;
 import robo.jogadores.*;
+import robo.npcs.Aluno;
+import robo.npcs.Bug;
 
 public class Jogo {
 	private Prompt prompt;
@@ -28,7 +30,6 @@ public class Jogo {
 		setQuantidadeBugs(prompt.promptQuantidadeBugs(maximoNumeroNPC()/2));
 		setQuantidadeAlunos(prompt.promptQuantidadeAlunos(maximoNumeroNPC()-quantidadeBugs));
 		spawnRobos();
-		this.plano.spawnNPCs(this.quantidadeBugs, this.quantidadeAlunos);
 		this.rodada = 0;
 		this.alunoResgatados = 0;
 		this.exit = false;
@@ -59,6 +60,7 @@ public class Jogo {
 				i++;
 		}
 	}
+
 	
 	public int getRodada() {
 		return rodada;
@@ -81,6 +83,13 @@ public class Jogo {
 		robos.add(cavalo);
 		robos.add(rei);
 		robos.add(rainha);
+		
+		for (int i = 0; i < this.quantidadeAlunos; i++) {
+			new Aluno(plano);
+		}
+		for (int j = 0; j < this.quantidadeBugs; j++) {
+			new Bug(plano);
+		}
 	}
 	
 	public boolean movimento(Robo robo, String [] tokens) {

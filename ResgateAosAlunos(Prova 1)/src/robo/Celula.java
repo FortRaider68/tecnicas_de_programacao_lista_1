@@ -53,11 +53,11 @@ public class Celula {
 			this.simbolo = '.';
 		}else {
 			Personagem aux = this.personagens.get(this.personagens.size()-1);
-			if(aux.getNome() == "Bug" || aux.getNome() == "Aluno") {
-				this.simbolo = '.';
-			}else {
+//			if(aux.getNome() == "Bug" || aux.getNome() == "Aluno") {
+//				this.simbolo = '.';
+//			}else {
 				this.simbolo = aux.getSimbolo();
-			}
+//			}
 			
 		}
 	}

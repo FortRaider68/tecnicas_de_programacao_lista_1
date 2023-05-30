@@ -6,13 +6,13 @@ public abstract class Tela {
 	
 	private Scanner entrada;
 	public static boolean cli;
-	private String message;
+	public static String message;
 	
-	public String getMessage() {
+	public static String getMessage() {
 		return message;
 	}
 	public void setMessage(String message) {
-		this.message = message;
+		message = message;
 	}
 	
 	public Tela() {
@@ -28,7 +28,7 @@ public abstract class Tela {
 		}
 	}
 	
-	public abstract void imprimir();
+	//public abstract void imprimir();
 	
 	
 	protected String lerEntrada() {
