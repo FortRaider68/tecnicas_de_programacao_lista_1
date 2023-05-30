@@ -14,12 +14,12 @@ public class Rainha extends Robo {
 	public void avancar(int celulas) {
 		if(celulas > 4)
 			celulas = 4;
-		this.deslocar(celulas, celulas);
+		this.deslocar(-celulas, celulas);
 	}
 
 	public void retroceder(int celulas) {
 		if(celulas > 4)
 			celulas = 4;
-		this.deslocar(-celulas, -celulas);
+		this.deslocar(celulas, -celulas);
 	}
 }
