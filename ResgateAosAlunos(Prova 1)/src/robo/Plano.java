@@ -118,5 +118,12 @@ public class Plano {
 		return listaCelulas;
 	}
 	
-	
+	public int quantidadeAlunos() {
+		int i = 0;
+		for (Celula celula : listaCelulas) {
+			if(celula.temAluno())
+				i++;
+		}
+		return i;
+	}
 }

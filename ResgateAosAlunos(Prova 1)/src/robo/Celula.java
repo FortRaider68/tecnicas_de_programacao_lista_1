@@ -8,6 +8,7 @@ public class Celula {
 	private int posicaoY;
 	private int id;
 	private ArrayList<Personagem> personagens;
+	private boolean marcada;
 	private char simbolo;
 	
 	public Celula(int id, int x , int y) {
@@ -18,6 +19,14 @@ public class Celula {
 		this.simbolo = '.';
 	}
 	
+	public boolean isMarcada() {
+		return marcada;
+	}
+
+	public void setMarcada(boolean marcada) {
+		this.marcada = marcada;
+	}
+
 	public char getSimbolo() {
 		return this.simbolo;
 	}
@@ -48,17 +57,25 @@ public class Celula {
 		this.atulizarCelula();
 	}
 	
-	public void atulizarCelula() {
-		if(personagens.isEmpty()) {
-			this.simbolo = '.';
-		}else {
+	public boolean temAluno() {
+		if(!this.personagens.isEmpty()) {
+			for (Personagem personagem : personagens) {
+				if(personagem.getNome() == "Aluno")
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public void atulizarCelula() {		
+		if(!this.personagens.isEmpty()) {
 			Personagem aux = this.personagens.get(this.personagens.size()-1);
-//			if(aux.getNome() == "Bug" || aux.getNome() == "Aluno") {
-//				this.simbolo = '.';
-//			}else {
+			if(aux.getNome() != "Bug" && aux.getNome() != "Aluno")
 				this.simbolo = aux.getSimbolo();
-//			}
-			
+		}else {
+			this.simbolo = '.';
+			if(marcada)
+				this.simbolo = '^';
 		}
 	}
 }

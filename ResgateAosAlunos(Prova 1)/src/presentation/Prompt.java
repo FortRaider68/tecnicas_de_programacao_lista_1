@@ -5,7 +5,7 @@ public class Prompt extends Tela {
 	public void imprimir() {
 		limparTela();
 		System.out.println(this.getMessage());
-		setMessage("");
+		Tela.message = "";
 	}
 	
 	public String promptNome() {

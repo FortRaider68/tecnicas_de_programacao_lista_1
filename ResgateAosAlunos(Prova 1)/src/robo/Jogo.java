@@ -141,6 +141,10 @@ public class Jogo {
 		this.quantidadeBugs = quantidadeBugs;
 	}
 
+	public int getQuantidadeAlunos() {
+		return quantidadeAlunos;
+	}
+
 	public void setQuantidadeAlunos(int quantidadeAlunos) {
 		if(quantidadeAlunos > maximoNumeroNPC()-quantidadeBugs) {
 			this.quantidadeAlunos = maximoNumeroNPC()-quantidadeBugs;

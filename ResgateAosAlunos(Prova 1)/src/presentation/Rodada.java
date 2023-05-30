@@ -5,8 +5,8 @@ import robo.Jogo;
 import robo.Plano;
 
 public class Rodada extends Tela {
-	private Plano plano;
-	private Jogo jogo;
+	protected Plano plano;
+	protected Jogo jogo;
 	private String roboDaVez;
 	
 	public Rodada(Plano plano, Jogo jogo) {
@@ -21,43 +21,37 @@ public class Rodada extends Tela {
 		//Essa parte for um pé no saco de fazer :|
 		for (int i = plano.getTamanhoY(); i > 0 ; i--) {
 			for (int j = 0; j < plano.getTamanhoX(); j++) {
-				int index = i + j * plano.getTamanhoY()-1;
+				int index = (i) + j * plano.getTamanhoY()-1;
 				Celula aux = plano.getListaCelulas().get(index);
 				char simbolo = aux.getSimbolo();
 				System.out.print(" ["+simbolo+"] ");
 			}
-			barraLateral(i);
+			this.barraLateral(i);
 			System.out.print("\n");
 		}
 		System.out.print("\n");
 		System.out.println("(Insira 'q' para sair.)");
 		System.out.println("Insira (Ação:n° de passos):");
-		setMessage("");
+		
 	}
 
 	private void barraLateral(int i) {
 		int linha = plano.getTamanhoY() - i;
 		imprimirRodada(linha);
-		imprimirRoboNome(linha);
 		imprimirMensagem(linha);
 		imprimirAcoes(linha);
 	}
 	
 	private void imprimirRodada(int linha) {
 		if(linha ==0) {
-			System.out.print("\tRodada:"+jogo.getRodada());
-		}
-	}
-	
-	private void imprimirRoboNome(int linha) {
-		if(linha ==1) {
-			System.out.print("\tRobô:"+this.roboDaVez);
+			System.out.print("\tRodada:"+jogo.getRodada()+"("+this.roboDaVez.toUpperCase()+")");
 		}
 	}
 	
 	private void imprimirMensagem(int linha) {
-		if(linha == 2 && getMessage() != null) {
+		if(linha == 1 && getMessage() != null) {
 			System.out.print("\t"+getMessage().toUpperCase());
+			Tela.message = "";
 		} 
 	}
 	

@@ -1,6 +1,7 @@
 package robo.jogadores;
 
 import presentation.Tela;
+import robo.Celula;
 import robo.Jogador;
 import robo.Personagem;
 import robo.Plano;
@@ -15,6 +16,7 @@ public abstract class Robo extends Personagem implements Jogador  {
 		this.setPosicaox(this.getPosicaox()+x);
 		this.setPosicaoy(this.getPosicaoy()+y);
 		encontrouNPC();
+		this.getCelula().setMarcada(true);
 	}
 
 	
@@ -28,6 +30,7 @@ public abstract class Robo extends Personagem implements Jogador  {
 			
 			if(aux.getNome() == "Aluno") {
 				this.setPontos(aux.getPontos());
+				this.getCelula().removerPersonagem(aux);
 				Tela.message = "Isso aí. Resgatamos um aluno.";
 			}
 		}
