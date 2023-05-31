@@ -5,20 +5,30 @@ import java.util.Scanner;
 public abstract class Tela {
 	
 	private Scanner entrada;
-	public static boolean cli;
-	public static String message;
-	
-	public static String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		message = message;
-	}
+	private static boolean cli;
+	private static String message;
 	
 	public Tela() {
 		super();
+		this.cli = false;
 		entrada = new Scanner(System.in);
 	}
+	
+	public static String getMessage() {
+		return Tela.message;
+	}
+	public static void setMessage(String message) {
+		Tela.message = message;
+	}
+	
+	public static boolean getCli() {
+		return Tela.cli;
+	}
+	
+	public static void setCli(boolean cli) {
+		 Tela.cli = cli;
+	}
+	
 	public void limparTela() {
 		if(cli) {
 			System.out.print("\033[H\033[2J");
@@ -28,7 +38,7 @@ public abstract class Tela {
 		}
 	}
 	
-	//public abstract void imprimir();
+	public abstract void imprimir();
 	
 	
 	protected String lerEntrada() {

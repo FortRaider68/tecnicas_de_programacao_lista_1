@@ -4,8 +4,8 @@ public class Prompt extends Tela {
 	
 	public void imprimir() {
 		limparTela();
-		System.out.println(this.getMessage());
-		Tela.message = "";
+		System.out.println(Tela.getMessage());
+		Tela.setMessage("");
 	}
 	
 	public String promptNome() {
@@ -28,9 +28,5 @@ public class Prompt extends Tela {
 		setMessage("Insira o número de Alunos que deseja ter no jogo (MAX:"+ maximo+")");
 		imprimir();
 		return promptInt();
-	}
-	
-	public void setMessage(String message) {
-		Tela.message = message;
 	}
 }

@@ -1,5 +1,5 @@
 package presentation;
 
 public interface TelaQuadrante {
-	public void imprimirTela();
+	public void barraLateral(int i);
 }
