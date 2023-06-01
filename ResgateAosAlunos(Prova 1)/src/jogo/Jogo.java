@@ -27,7 +27,7 @@ public class Jogo {
 		this.quantidadeRobos = 7;
 		this.nome = prompt.promptNome();
 		setTamanhoPlano(prompt.promptPlanoParametros());
-		spawnRobos();
+		this.spawnRobos();
 		int nBugs = parserQuantidadeBugs(prompt.promptQuantidadeBugs(maximoNumeroNPC()/2));
 		int nAlunos = parserQuantidadeAlunos(prompt.promptQuantidadeAlunos(maximoNumeroNPC()-nBugs),nBugs);
 		this.plano.instaciarNPCs(nBugs,nAlunos);
@@ -37,16 +37,16 @@ public class Jogo {
 	}
 	
 	public void jogar() {
-		while(alunoResgatados != this.plano.getNAlunos()) {
+		boolean parada = true;
+		while(parada) {
+			parada = rodada.jogar();
 			if(exit) {
 				this.relatorio.imprimir();
 				Tela.setMessage("Tchau :)");
 				prompt.imprimir();
 				return;
-			}
-			rodada.jogar();
-		}
-		this.relatorio.imprimir();
+			}	
+		}	
 	}
 	
 	public String getNome() {
@@ -63,6 +63,27 @@ public class Jogo {
 
 	public void setExit(boolean exit) {
 		this.exit = exit;
+	}
+	
+	public int alunosResgatados() {
+		int aux = 0;
+		for (Celula celula : this.plano.getCelulasMarcadas()) {
+			for(Personagem personagem : celula.getPersonagem()) {
+				if(personagem.getNome() == "Aluno")
+					aux++;
+			}
+		}
+		return aux;
+	}
+	
+	public boolean verificarVitoria() {
+		if(this.alunosResgatados() == this.plano.getNAlunos()) {
+			Tela.setMessage("VOCÊ GANHOU!!!");
+			prompt.imprimir();
+			this.relatorio.imprimir();
+			return true;
+		}
+		return false;
 	}
 
 	public void spawnRobos() {

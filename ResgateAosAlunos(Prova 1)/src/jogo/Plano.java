@@ -29,7 +29,7 @@ public class Plano {
 	
 	public int getNAlunos() {
 		int i = 0;
-		for (Celula celula : listaCelulas) {
+		for (Celula celula : this.listaCelulas) {
 			for(Personagem personagem: celula.getPersonagem()) {
 				if(personagem.getNome() == "Aluno")
 					i++;
@@ -49,7 +49,7 @@ public class Plano {
 	
 	public int getNBugs() {
 		int i = 0;
-		for (Celula celula : listaCelulas) {
+		for (Celula celula : this.listaCelulas) {
 			for(Personagem personagem: celula.getPersonagem()) {
 				if(personagem.getNome() == "Bug")
 					i++;

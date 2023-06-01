@@ -40,7 +40,7 @@ public class Rodada {
 	 * quantidade de alunos e bugs na diferença.
 	 */
 
-	public void jogar() {
+	public boolean jogar() {
 		jogo.setRodadaN(jogo.getRodadaN()+1);
 		this.celulasAntesDaRodada = this.plano.getCelulasMarcadas();
 		for (int i = 0; i < this.jogo.getRobos().size();) {
@@ -49,14 +49,18 @@ public class Rodada {
 			String entrada[] = quadranteTela.prompt();
 			if(entrada[0].contains("q")) {
 				this.jogo.setExit(true);
-				return;
+				return false;
 			}
-			if(jogo.parserMovimento(robo, entrada))
+			if(jogo.parserMovimento(robo, entrada)) {
 				i++;
+			}	
+			if(this.jogo.verificarVitoria())
+				return false;
 		}
 		estadoDesfecho();
 		desfechoRodada.imprimir();
 		Tela.setMessage("");
+		return true;
 	}
 	
 	private ArrayList<Celula> diferencaEntreCelulas(){

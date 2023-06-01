@@ -51,16 +51,16 @@ public class Celula {
 
 	public void setPersonagem(Personagem personagem) {
 		this.personagens.add(personagem);
-		this.atulizarCelula();
+		this.atualizarCelula();
 	}
 	
 	public void removerPersonagem(Personagem personagem) {
 		this.personagens.remove(personagem);
-		this.atulizarCelula();
+		this.atualizarCelula();
 	}
 	
 	//problema de logica a resolver
-	public void atulizarCelula() {		
+	public void atualizarCelula() {		
 		if(!this.personagens.isEmpty()) {
 			Personagem aux = this.personagens.get(this.personagens.size()-1);
 			if(aux.getNome() != "Bug" && aux.getNome() != "Aluno" || this.revelio && !this.marcada)
