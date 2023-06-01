@@ -139,7 +139,7 @@ public class Jogo {
 			}
 			plano.setPlanoDimensoes(x, y);
 		} catch (Exception e) {
-			Tela.setMessage("Entrada Invalida. Usanda as dimensões padrão (7x7).");
+			Tela.setMessage("Entrada Invalida. Usando as dimensões padrão (7x7).");
 			prompt.imprimir();
 		}
 	} 

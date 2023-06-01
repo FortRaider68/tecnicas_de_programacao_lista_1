@@ -9,7 +9,6 @@ public class Celula {
 	private int id;
 	private ArrayList<Personagem> personagens;
 	private boolean marcada;
-	private boolean revelio; //Usado apenas para Debug
 	private char simbolo;
 	
 	public Celula(int id, int x , int y) {
@@ -18,7 +17,6 @@ public class Celula {
 		this.id = id;
 		this.personagens = new ArrayList<Personagem>();
 		this.simbolo = '.';
-		this.revelio = true;
 	}
 	
 	public boolean isMarcada() {
@@ -51,25 +49,10 @@ public class Celula {
 
 	public void setPersonagem(Personagem personagem) {
 		this.personagens.add(personagem);
-		this.atualizarCelula();
 	}
 	
 	public void removerPersonagem(Personagem personagem) {
 		this.personagens.remove(personagem);
-		this.atualizarCelula();
-	}
-	
-	//problema de logica a resolver
-	public void atualizarCelula() {		
-		if(!this.personagens.isEmpty()) {
-			Personagem aux = this.personagens.get(this.personagens.size()-1);
-			if(aux.getNome() != "Bug" && aux.getNome() != "Aluno" || this.revelio && !this.marcada)
-				this.simbolo = aux.getSimbolo();
-		}else {
-			this.simbolo = '.';
-			if(marcada)
-				this.simbolo = '^';
-		}
 	}
 	
 }

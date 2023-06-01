@@ -2,18 +2,21 @@ package presentation;
 
 import jogo.Celula;
 import jogo.Jogo;
+import jogo.Personagem;
 import jogo.Plano;
 
 public class TelaRodada extends Tela {
 	private Plano plano;
 	private Jogo jogo;
 	private String roboDaVez;
+	private boolean revelio; //Apenas para Debug
 	
 	public TelaRodada(Plano plano, Jogo jogo) {
 		super();
 		this.plano = plano;
 		this.jogo = jogo;
 		this.roboDaVez ="";
+		this.revelio = false;
 	}
 	
 	public void imprimir() {
@@ -23,7 +26,7 @@ public class TelaRodada extends Tela {
 			for (int j = 0; j < plano.getTamanhoX(); j++) {
 				int index = (i) + j * plano.getTamanhoY()-1;
 				Celula aux = plano.getListaCelulas().get(index);
-				char simbolo = aux.getSimbolo();
+				char simbolo = simboloCelula(aux);
 				System.out.print(" ["+simbolo+"] ");
 			}
 			this.barraLateral(i);
@@ -85,5 +88,17 @@ public class TelaRodada extends Tela {
 		this.roboDaVez = roboDaVez;
 	}
 	
+	public char simboloCelula(Celula celula) {
+		char simbolo = '.';
+		if(celula.isMarcada())
+			simbolo = '^';
+		if(!celula.getPersonagem().isEmpty()) {
+			int nPersonagens = celula.getPersonagem().size();
+			Personagem ultimoPersonagem = celula.getPersonagem().get(nPersonagens-1);
+			if(ultimoPersonagem.getNome() != "Bug" && ultimoPersonagem.getNome() != "Aluno" || this.revelio && !celula.isMarcada())
+				simbolo = ultimoPersonagem.getSimbolo();
+		}
+		return simbolo;
+	}
 	
 }

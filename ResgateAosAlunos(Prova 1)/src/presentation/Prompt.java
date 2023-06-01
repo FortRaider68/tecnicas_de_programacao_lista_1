@@ -9,24 +9,41 @@ public class Prompt extends Tela {
 	}
 	
 	public String promptNome() {
-		setMessage("Insira seu nome");
+		Tela.setMessage("Insira seu nome");
 		imprimir();
 		return promptString();
 	}
 	
 	public String[] promptPlanoParametros() {
-		setMessage("Digite as dimensões do plano (minimo 7x7):");
+		Tela.setMessage("Digite as dimensões do plano (minimo 7x7):");
 		imprimir();
 		return promptToken("x");
 	}
 	public int promptQuantidadeBugs(int maximo ) {
-		setMessage("Insira o número de Bugs que deseja ter no jogo (MAX:"+ maximo+")");
+		int i = 0; 
+		Tela.setMessage("Insira o número de Bugs que deseja ter no jogo (MAX:"+ maximo+")");
 		imprimir();
-		return promptInt();
+		try {
+			i = Integer.parseInt(lerEntrada());
+			return i;
+		} catch (Exception e) {
+			Tela.setMessage("Entrada Invalida");
+			imprimir();
+			return this.promptQuantidadeBugs(maximo);
+		}
+		
 	}
 	public int promptQuantidadeAlunos(int maximo) {
-		setMessage("Insira o número de Alunos que deseja ter no jogo (MAX:"+ maximo+")");
+		int i = 0; 
+		Tela.setMessage("Insira o número de Alunos que deseja ter no jogo (MAX:"+ maximo+")");
 		imprimir();
-		return promptInt();
+		try {
+			i = Integer.parseInt(lerEntrada());
+			return i;
+		} catch (Exception e) {
+			Tela.setMessage("Entrada Invalida");
+			imprimir();
+			return this.promptQuantidadeBugs(maximo);
+		}
 	}
 }

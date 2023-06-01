@@ -31,7 +31,6 @@ public class DesfechoRodada extends Tela implements TelaQuadrante{
 			System.out.print("\n");
 		}
 		System.out.print("\n");
-		System.out.println("(Insira 'q' para sair.)");
 		System.out.println("Aperte qualquer tecla para Continuar");
 		promptString();
 	}
