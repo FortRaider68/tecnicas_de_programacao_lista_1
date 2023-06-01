@@ -7,7 +7,8 @@ import npcs.Bug;
 import presentation.*;
 
 public class Jogo {
-	private Prompt prompt;	
+	private Prompt prompt;
+	private Relatorio relatorio;
 	private String nome;
 	private Plano plano;
 	private Rodada rodada;
@@ -19,6 +20,7 @@ public class Jogo {
 	
 	public Jogo() {
 		this.prompt = new Prompt();
+		this.relatorio = new Relatorio(this);
 		this.plano = new Plano(7, 7);
 		this.robos = new ArrayList<Robo>();
 		this.rodada = new Rodada(this, plano);
@@ -37,29 +39,19 @@ public class Jogo {
 	public void jogar() {
 		while(alunoResgatados != this.plano.getNAlunos()) {
 			if(exit) {
+				this.relatorio.imprimir();
 				Tela.setMessage("Tchau :)");
 				prompt.imprimir();
 				return;
 			}
 			rodada.jogar();
 		}
+		this.relatorio.imprimir();
 	}
 	
-//	private void rodada() {
-//		this.rodada+=1;
-//		for (int i = 0; i < robos.size();) {
-//			Robo robo = robos.get(i);
-//			quadranteTela.setRoboDaVez(robo.getNome());
-//			String entrada[] = quadranteTela.prompt();
-//			if(entrada[0].contains("q")) {
-//				exit = true;
-//				return;
-//			}
-//			if(parserMovimento(robo, entrada))
-//				i++;
-//		}
-//		desfechoRodada.imprimir();
-//	}
+	public String getNome() {
+		return nome;
+	}
 
 	public void setRodadaN(int rodadaN) {
 		this.rodadaN = rodadaN;
@@ -126,7 +118,7 @@ public class Jogo {
 			}
 			plano.setPlanoDimensoes(x, y);
 		} catch (Exception e) {
-			prompt.setMessage("Entrada Invalida. Usanda as dimensões padrão (7x7).");
+			Tela.setMessage("Entrada Invalida. Usanda as dimensões padrão (7x7).");
 			prompt.imprimir();
 		}
 	} 

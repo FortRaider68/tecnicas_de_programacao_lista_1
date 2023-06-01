@@ -34,7 +34,7 @@ public class Celula {
 	}
 	
 	public String imprimir() {
-		return "Celula:  " + id + " x: " + posicaoX + " y: " + posicaoY;
+		return "Celula:  " + id + " x: " + posicaoX + " y: " + posicaoY + "\n";
 	}
 
 	public int getPosicaoX() {
@@ -59,6 +59,7 @@ public class Celula {
 		this.atulizarCelula();
 	}
 	
+	//problema de logica a resolver
 	public void atulizarCelula() {		
 		if(!this.personagens.isEmpty()) {
 			Personagem aux = this.personagens.get(this.personagens.size()-1);

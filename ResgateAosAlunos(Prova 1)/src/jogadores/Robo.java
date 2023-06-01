@@ -1,5 +1,7 @@
 package jogadores;
 
+import java.util.ArrayList;
+
 import jogo.Celula;
 import jogo.Jogador;
 import jogo.Personagem;
@@ -8,20 +10,25 @@ import npcs.Aluno;
 import presentation.Tela;
 
 public abstract class Robo extends Personagem implements Jogador  {
+	private ArrayList<Celula> celulasMarcadas;
 	
 	public Robo(int id, String nome, int posicaox, int posicaoy, Plano plano, char simbolo) {
 		super(id, nome, posicaox, posicaoy, plano, simbolo);
+		this.celulasMarcadas = new ArrayList<Celula>();
 	}
 
 	public void deslocar(int x, int y) {
 		this.setPosicaox(this.getPosicaox()+x);
 		this.setPosicaoy(this.getPosicaoy()+y);
 		encontrouNPC();
+		celulasMarcadas.add(this.getCelula());
 		this.getCelula().setMarcada(true);
 	}
+	
+	public ArrayList<Celula> getCelulasMarcadas() {
+		return celulasMarcadas;
+	}
 
-	
-	
 	public void encontrouNPC() {
 		for (Personagem aux : this.getCelula().getPersonagem()) {
 			if(aux.getNome() == "Bug") {
