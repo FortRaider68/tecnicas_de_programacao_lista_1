@@ -26,10 +26,10 @@ Você vai jogar com Robôs. Sua missão é resgatar todos os alunos presentes no
 
 #### Lista de NPCs 
 
-|Personagem|Símbolo|
-|---|---|
-|Aluno| U |
-|Bug | S |
+|Personagem|Símbolo|Pontuação|
+|---|---|---|
+|Aluno| U |10 Pontos|
+|Bug | S | -15 Pontos |
 
 Você irá jogar com um Robô de cada vez (O nome do Robô da vez é indicado no canto direito superior da tela) e quando chegar ao último começará uma nova rodada. 
 
