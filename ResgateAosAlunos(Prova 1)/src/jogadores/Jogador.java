@@ -1,6 +1,8 @@
-package jogo;
+package jogadores;
+
+import jogo.Coordenadas;
 
 public interface Jogador {
-	public void avancar(int celulas);
-	public void retroceder(int celulas);
+	public Coordenadas avancar(int celulas);
+	public Coordenadas retroceder(int celulas);
 }

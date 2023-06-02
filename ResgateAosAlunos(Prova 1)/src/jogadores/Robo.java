@@ -3,7 +3,7 @@ package jogadores;
 import java.util.ArrayList;
 
 import jogo.Celula;
-import jogo.Jogador;
+import jogo.Coordenadas;
 import jogo.Personagem;
 import jogo.Plano;
 import npcs.Aluno;
@@ -12,16 +12,33 @@ import presentation.Tela;
 public abstract class Robo extends Personagem implements Jogador  {
 	private ArrayList<Celula> celulasMarcadas;
 	
-	public Robo(int id, String nome, int posicaox, int posicaoy, Plano plano, char simbolo) {
-		super(id, nome, posicaox, posicaoy, plano, simbolo);
+	public Robo(int id, String nome, Coordenadas coordenadas, Plano plano, char simbolo) {
+		super(id, nome, plano, simbolo);
 		this.celulasMarcadas = new ArrayList<Celula>();
+		this.deslocar(coordenadas);
 	}
 
-	public void deslocar(int x, int y) {
-		this.setPosicaox(this.getPosicaox()+x);
-		this.setPosicaoy(this.getPosicaoy()+y);
-		encontrouNPC();
-		celulasMarcadas.add(this.getCelula());
+	public boolean deslocar(Coordenadas coordenadas) {
+		Celula aux = null;
+		for (int i = 0; i < this.plano.getListaCelulas().size(); i++) {
+			aux = this.plano.getListaCelulas().get(i);
+			if (aux.getPosicaoX() == coordenadas.getX()+1 && aux.getPosicaoY() == coordenadas.getY()+1) {
+				if(this.getCelula() != null) {
+					this.getCelula().removerPersonagem(this);
+				}
+				aux.setPersonagem(this);	
+				this.setCelula(aux);
+				this.setPosicaox(coordenadas.getX());
+				this.setPosicaoy(coordenadas.getY());
+				return true;
+			}
+		}
+		Tela.setMessage("Cuidado! Você está passando dos limites do plano.");
+		return false;
+	}
+	
+	public void passouPelaCelula() {
+		this.celulasMarcadas.add(this.getCelula());
 		this.getCelula().setMarcada(true);
 	}
 	

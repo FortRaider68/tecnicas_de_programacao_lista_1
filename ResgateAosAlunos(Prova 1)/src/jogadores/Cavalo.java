@@ -1,26 +1,28 @@
 package jogadores;
 
-import jogo.Jogador;
+import jogo.Coordenadas;
 import jogo.Personagem;
 import jogo.Plano;
 
 public class Cavalo extends Robo {
 	
 	public Cavalo(int posicaox, int posicaoy, Plano plano) {
-		super(4, "Cavalo", posicaox, posicaoy, plano,'C');
+		super(4, "Cavalo", new Coordenadas(posicaox, posicaoy), plano,'C');
 		posicaox+=getId();
-		this.setPosicaox(posicaox);
+		this.deslocar(new Coordenadas(posicaox, posicaoy));
 	}
 
-	public void avancar(int celulas) {
+	public Coordenadas avancar(int celulas) {
 		if(celulas > 2)
 			celulas = 2;
-		this.deslocar(celulas, celulas);
+		Coordenadas coordenadas = new Coordenadas(this.getPosicaox()+celulas,this.getPosicaoy()+celulas);
+		return coordenadas;
 	}
 
-	public void retroceder(int celulas) {
+	public Coordenadas retroceder(int celulas) {
 		if(celulas > 2)
 			celulas = 2;
-		this.deslocar(-celulas, -celulas);
+		Coordenadas coordenadas = new Coordenadas(this.getPosicaox() -celulas,this.getPosicaoy() -celulas);
+		return coordenadas;
 	}
 }

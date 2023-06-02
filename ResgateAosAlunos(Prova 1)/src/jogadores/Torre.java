@@ -1,26 +1,28 @@
 package jogadores;
 
-import jogo.Jogador;
+import jogo.Coordenadas;
 import jogo.Personagem;
 import jogo.Plano;
 
 public class Torre extends Robo {
 	
 	public Torre(int posicaox, int posicaoy, Plano plano) {
-		super(2, "Torre", posicaox, posicaoy, plano,'T');
+		super(2, "Torre", new Coordenadas(posicaox, posicaoy), plano,'T');
 		posicaox+=getId();
-		this.setPosicaox(posicaox);
+		this.deslocar(new Coordenadas(posicaox, posicaoy));
 	}
 
-	public void avancar(int celulas) {
+	public Coordenadas avancar(int celulas) {
 		if(celulas > 2)
 			celulas = 2;
-		this.deslocar(celulas, 0);
+		Coordenadas coordenadas = new Coordenadas(this.getPosicaox()+ celulas, this.getPosicaoy());
+		return coordenadas;
 	}
 
-	public void retroceder(int celulas) {
+	public Coordenadas retroceder(int celulas) {
 		if(celulas > 2)
 			celulas = 2;
-		this.deslocar(-celulas,0);
+		Coordenadas coordenadas = new Coordenadas(this.getPosicaox()-celulas,this.getPosicaoy());
+		return coordenadas;
 	}
 }

@@ -51,7 +51,10 @@ public class Rodada {
 				this.jogo.setExit(true);
 				return false;
 			}
-			if(jogo.parserMovimento(robo, entrada)) {
+			Coordenadas coordenadasCelula = jogo.parserMovimento(robo, entrada);
+			if(coordenadasCelula != null && robo.deslocar(coordenadasCelula)) {
+				robo.passouPelaCelula();
+				robo.encontrouNPC();
 				i++;
 			}	
 			if(this.jogo.verificarVitoria())

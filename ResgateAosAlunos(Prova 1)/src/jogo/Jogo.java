@@ -30,7 +30,7 @@ public class Jogo {
 		this.spawnRobos();
 		int nBugs = parserQuantidadeBugs(prompt.promptQuantidadeBugs(maximoNumeroNPC()/2));
 		int nAlunos = parserQuantidadeAlunos(prompt.promptQuantidadeAlunos(maximoNumeroNPC()-nBugs),nBugs);
-		this.plano.instaciarNPCs(nBugs,nAlunos);
+		this.plano.instanciarNPCs(nAlunos,nBugs);
 		this.rodadaN = 0;
 		this.alunoResgatados = 0;
 		this.exit = false;
@@ -109,24 +109,23 @@ public class Jogo {
 		return robos;
 	}
 
-	public boolean parserMovimento(Robo robo, String [] tokens) {
+	public Coordenadas parserMovimento(Robo robo, String [] tokens) {
 		try {
 			int acao = Integer.parseInt(tokens[0]);
 			int ncelulas = Math.abs(Integer.parseInt(tokens[1]));
 			
 			if(acao == 1) {//avançar
-				robo.avancar(ncelulas);
+				return robo.avancar(ncelulas);
 			}else if(acao == 2) {//retroceder
-				robo.retroceder(ncelulas);
+				return robo.retroceder(ncelulas);
 			}else {
 				Tela.setMessage("Ação invalida.");
-				return false;
+				return null;
 			}
-			return true;
 		} catch (Exception e) {
 			Tela.setMessage("Comando Invalido.");
 		}
-		return false;
+		return null;
 	}
 	
 	public void setTamanhoPlano(String[] dimensoes) {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import jogadores.Robo;
 import npcs.Aluno;
 import npcs.Bug;
+import presentation.Tela;
 
 public class Plano {
 
@@ -18,11 +19,11 @@ public class Plano {
 		this.tamanhoY = tamanhoY;
 	}
 	
-	public void instaciarNPCs(int nAlunos, int nBugs) {
+	public void instanciarNPCs(int nAlunos, int nBugs) {
 		for (int i = 0; i < nBugs; i++) {
 			new Bug(this);
 		}
-		for (int i = 0; i < nBugs; i++) {
+		for (int i = 0; i < nAlunos; i++) {
 			new Aluno(this);
 		}
 	}
@@ -72,40 +73,6 @@ public class Plano {
 			}
 		}
 	}
-
-//	public void spawnNPCs(int bugs, int alunos) {
-//		for (int i = bugs; i >0;) {
-//			int x = (int)(Math.random() * this.tamanhoX);
-//			int y = (int)(Math.random() * this.tamanhoY);
-//			
-//			Celula aux = getCelula(x, y);
-//			if(aux != null) {
-//				if(aux.getPersonagem().isEmpty()) {
-//					Personagem bug = new Bug(this);
-//					aux.setPersonagem(bug);
-//					i--;
-//				}
-//			}
-//			
-//		}
-//		
-//		for (int i = alunos; i >0;) {
-//			int x = (int)(Math.random() * this.tamanhoX);
-//			int y = (int)(Math.random() * this.tamanhoY);
-//			
-//			Celula aux = getCelula(x, y);
-//			if(aux != null) {
-//				if(aux.getPersonagem().isEmpty()) {
-//					Personagem bug = new Aluno(this);
-//					aux.setPersonagem(bug);
-//					i--;
-//				}
-//			}
-//			
-//		}
-//		
-//		
-//	}
 	
 	public Celula getCelula(int x, int y) {
 		for (int i = 0; i < listaCelulas.size(); i++) {
@@ -113,6 +80,18 @@ public class Plano {
 			if(aux.getPosicaoX() == x && aux.getPosicaoY() == y)
 				return aux;
 		}
+		return null;
+	}
+	
+	public Celula getCelula(Coordenadas coordenadas) {
+		int x = coordenadas.getX();
+		int y = coordenadas.getY();
+		for (int i = 0; i < listaCelulas.size(); i++) {
+			Celula aux = listaCelulas.get(i);
+			if(aux.getPosicaoX() == x && aux.getPosicaoY() == y)
+				return aux;
+		}
+		Tela.setMessage("Está se movendo para uma área fora do plano. Cuidado!");
 		return null;
 	}
 	
@@ -157,13 +136,4 @@ public class Plano {
 	public ArrayList<Celula> getListaCelulas() {
 		return listaCelulas;
 	}
-	
-//	public int quantidadeAlunos() {
-//		int i = 0;
-//		for (Celula celula : listaCelulas) {
-//			if(celula.temAluno())
-//				i++;
-//		}
-//		return i;
-//	}
 }
