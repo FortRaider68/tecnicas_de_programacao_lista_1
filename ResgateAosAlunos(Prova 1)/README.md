@@ -10,6 +10,8 @@ No inicio do jogo você será questionado sobre informações como: nome, dimens
 Após isso a primeira rodada irá começar e uma representação do Plano será mostrada no terminal.
 Você vai jogar com Robôs. Sua missão é resgatar todos os alunos presentes no plano ~~mesmo que isso não seja possível~~ usando os Robôs disponíveis no plano e evitar os bugs que também estarão pelo caminho.
 
+![](https://raw.githubusercontent.com/FortRaider68/tecnicas_de_programacao_listas/Main/ResgateAosAlunos(Prova%201)/capture01.png)
+
 #### Lista de Robôs
 
 |Robô|Símbolo|
