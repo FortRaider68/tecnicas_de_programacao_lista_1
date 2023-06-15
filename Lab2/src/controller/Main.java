@@ -9,9 +9,10 @@ public class Main {
 		AlunoController controller = new AlunoController(tela);
 		new MostrarCadastro(tela,controller);
 		new MostrarLista(tela, controller);
-		new MostrarAtualizar(tela);
+		new MostrarAtualizar(tela, controller);
 		new MostrarDeletar(tela);
 		new Cadastrar(controller);
+		new Atualizar(controller);
 	}
 
 }

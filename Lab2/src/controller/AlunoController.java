@@ -19,7 +19,7 @@ public class AlunoController {
 	private File db;
 	private Tela tela;
 	private Cadastrar cadastroListener;
-	private Atualizar atualizaListener;
+	private listeners.Atualizar atualizaListener;
 	private Deletar deleteListener;
 	
 	public AlunoController(Tela tela) {
@@ -93,10 +93,11 @@ public class AlunoController {
 			}
 			return alunoTabela;
 		} catch (Exception e) {
+			System.out.println(e);
 		}
 		return null;
 	};
-	public boolean atualizarAluno(int matricula, String vertente) {
+	public boolean atualizarAluno(String matricula, String vertente) {
 		int nLinha = alunoExiste(matricula);
 		if(nLinha != -1) {
 			try {
@@ -128,7 +129,6 @@ public class AlunoController {
 				fwTemp.close();
 				frDB.close();
 				dbTemp.renameTo(this.db);
-				this.db = dbTemp;
 				
 			} catch (Exception e) {
 				return false;
@@ -182,7 +182,7 @@ public class AlunoController {
 	}
 	
 	//retorna a linha ou -1 se não achar
-	public int alunoExiste(int matricula) {
+	public int alunoExiste(String matricula) {
 		try {
 			BufferedReader fr = new BufferedReader(new FileReader(this.db));
 			fr.readLine();
@@ -193,7 +193,7 @@ public class AlunoController {
 				linha = fr.readLine();
 				linhaNumero++;
 				String [] tokens = linha.split(", ");
-				if(Integer.parseInt(tokens[2]) == matricula) {
+				if(tokens[2].trim().compareTo(matricula.trim()) == 0) {
 					return linhaNumero+1;
 				}
 			}
@@ -213,11 +213,11 @@ public class AlunoController {
 		this.cadastroListener = cadastroListener;
 	}
 
-	public Atualizar getAtualizaListener() {
+	public listeners.Atualizar getAtualizaListener() {
 		return atualizaListener;
 	}
 
-	public void setAtualizaListener(Atualizar atualizaListener) {
+	public void setAtualizaListener(listeners.Atualizar atualizaListener) {
 		this.atualizaListener = atualizaListener;
 	}
 
@@ -234,6 +234,10 @@ public class AlunoController {
 	}
 
 	public void mostrarCadastro() {
-		tela.setDisplay(new Cadastro(cadastroListener));
+		tela.setDisplay(new Cadastro(this.cadastroListener));
+	}
+	
+	public void mostrarAtualiza() {
+		tela.setDisplay(new Atualizar(this.atualizaListener));
 	}
 }

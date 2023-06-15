@@ -6,19 +6,25 @@ import java.awt.Insets;
 
 import javax.swing.*;
 
-public class Atualizar extends JPanel {
+import controller.Aluno;
+
+public class Atualizar extends JPanel implements Entradas{
+	private JTextField matriculaField;
+	private JTextField vertenteField;
 	
-	public Atualizar () {
+	public Atualizar (listeners.Atualizar atualizaListener) {
+		atualizaListener.setAtualizar(this);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		JLabel matriculaLabel = new JLabel("Matrícula:");
 		JLabel vertenteLabel = new JLabel("Vertente:");
 		
-		JTextField matriculaField = new JTextField(30);
-		JTextField vertenteField = new JTextField(30);
+		this.matriculaField = new JTextField(30);
+		this.vertenteField = new JTextField(30);
 
 		JButton cadastrar = new JButton("Atualizar");
+		cadastrar.addActionListener(atualizaListener);
 		
 		c.ipady = 10;
 		c.ipadx = 50;
@@ -47,6 +53,10 @@ public class Atualizar extends JPanel {
 		c.weightx = 0.1;
 		c.insets =new Insets(0, 0, 10, 0);
 		this.add(cadastrar,c);
+	}
+
+	public Aluno getEstado() {
+		return new Aluno("", "", this.matriculaField.getText(),this.vertenteField.getText());
 	}
 }
 

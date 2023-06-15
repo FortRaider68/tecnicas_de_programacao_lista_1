@@ -6,7 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.*;
 
-public class Deletar extends JPanel {
+public class Deletar extends JPanel implements Entradas {
 	
 	public Deletar () {
 		this.setLayout(new GridBagLayout());

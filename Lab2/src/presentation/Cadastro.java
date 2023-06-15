@@ -10,7 +10,7 @@ import controller.Aluno;
 import controller.AlunoController;
 import listeners.Cadastrar;
 
-public class Cadastro extends JPanel {
+public class Cadastro extends JPanel implements Entradas{
 	
 	private JTextField nomeField;
 	private JTextField cpfField;
