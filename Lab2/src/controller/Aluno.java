@@ -1,15 +1,13 @@
 package controller;
 
 public class Aluno {
-	private int id;
 	private String nome;
 	private String cpf;
-	private int matricula;
+	private String matricula;
 	private String vertente;
 	
-	public Aluno(int id, String nome, String cpf, int matricula, String vertente) {
+	public Aluno(String nome, String cpf, String matricula, String vertente) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.matricula = matricula;
@@ -32,15 +30,12 @@ public class Aluno {
 		this.vertente = vertente;
 	}
 
-	public int getId() {
-		return id;
-	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 	

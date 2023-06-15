@@ -7,15 +7,24 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import listeners.Cadastrar;
+import listeners.Deletar;
+import presentation.Atualizar;
+import presentation.Cadastro;
 import presentation.Listar;
 import presentation.Tela;
 
 public class AlunoController {
 	private String filepath = "db.csv";
 	private File db;
+	private Tela tela;
+	private Cadastrar cadastroListener;
+	private Atualizar atualizaListener;
+	private Deletar deleteListener;
 	
-	public AlunoController() {
+	public AlunoController(Tela tela) {
 		db = new File(filepath);
+		this.tela = tela;
 		
 		if(!db.exists()) {
 			try {
@@ -30,7 +39,12 @@ public class AlunoController {
 		
 	}
 	
-	public boolean cadastrarAluno(String nome, String cpf, int matricula, String vertente) {
+	public boolean cadastrarAluno(Aluno aluno) {
+		String nome = aluno.getNome(); 
+		String cpf = aluno.getCpf();
+		String matricula = aluno.getMatricula();
+		String vertente = aluno.getVertente();
+
 		if(nome.isBlank() || cpf.isBlank() || vertente.isBlank())
 			return false;
 		String textodb = nome + ", " + cpf + ", " + matricula + ", " + vertente+"\n";
@@ -50,16 +64,18 @@ public class AlunoController {
 		try {
 			BufferedReader fr = new BufferedReader(new FileReader(this.db));
 			boolean fimDoArquivo = false;
-			String linha = "";
 			fr.readLine(); //pula primeira linha
 			
 			int nLinhas = 0;
+			String linha = "";
 			while(!fimDoArquivo) {
-				linhas.add(linha);
-				nLinhas++;
 				linha = fr.readLine();
-				if(linha == null) 
+				if(linha != null) {
+					linhas.add(linha);
+					nLinhas++;
+				}else {
 					fimDoArquivo = true;
+				}
 				
 			}
 			fr.close();
@@ -187,5 +203,37 @@ public class AlunoController {
 			return -1;
 		}
 		return -1;
+	}
+
+	public Cadastrar getCadastroListener() {
+		return cadastroListener;
+	}
+
+	public void setCadastroListener(Cadastrar cadastroListener) {
+		this.cadastroListener = cadastroListener;
+	}
+
+	public Atualizar getAtualizaListener() {
+		return atualizaListener;
+	}
+
+	public void setAtualizaListener(Atualizar atualizaListener) {
+		this.atualizaListener = atualizaListener;
+	}
+
+	public Deletar getDeleteListener() {
+		return deleteListener;
+	}
+
+	public void setDeleteListener(Deletar deleteListener) {
+		this.deleteListener = deleteListener;
+	}
+	
+	public Tela getTela() {
+		return tela;
+	}
+
+	public void mostrarCadastro() {
+		tela.setDisplay(new Cadastro(cadastroListener));
 	}
 }

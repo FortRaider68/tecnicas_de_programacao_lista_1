@@ -35,9 +35,18 @@ public class Deletar extends JPanel {
 		c.gridwidth =2;
 		this.add(matriculaField,c);
 		
-		c.gridy =1;
+//		JLabel message = new JLabel("<html><font color='green'>Gravado com sucesso.</font></html>");
+//		;
+//		
+//		c.gridy=1;
+//		c.weighty = 0.01;
+//		
+//		this.add(message,c);
+		
+		c.gridy =2;
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.LAST_LINE_END;
+		c.weighty = 1;
 		c.weightx = 0.1;
 		c.insets =new Insets(0, 0, 10, 0);
 		this.add(cadastrar,c);

@@ -9,15 +9,16 @@ import presentation.Tela;
 
 public class MostrarCadastro implements ActionListener {
 	private Tela tela;
+	private AlunoController controller;
 
-	public MostrarCadastro(Tela tela) {
-		super();
+	public MostrarCadastro(Tela tela, AlunoController controller) {
 		this.tela = tela;
-		tela.menu.getCadastrar().addActionListener(this);
+		this.controller = controller;
+		this.controller.getTela().menu.getCadastrar().addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		tela.setDisplay(new Cadastro());
+		this.controller.mostrarCadastro();
 	}
 
 }

@@ -6,9 +6,19 @@ import java.awt.Insets;
 
 import javax.swing.*;
 
+import controller.Aluno;
+import controller.AlunoController;
+import listeners.Cadastrar;
+
 public class Cadastro extends JPanel {
 	
-	public Cadastro () {
+	private JTextField nomeField;
+	private JTextField cpfField;
+	private JTextField matriculaField;
+	private JTextField vertenteField;
+	
+	public Cadastro (Cadastrar cadastroListener) {
+		cadastroListener.setCadastro(this);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -17,12 +27,13 @@ public class Cadastro extends JPanel {
 		JLabel matriculaLabel = new JLabel("Matrícula:");
 		JLabel vertenteLabel = new JLabel("Vertente:");
 		
-		JTextField nomeField = new JTextField(30);
-		JTextField cpfField = new JTextField(30);
-		JTextField matriculaField = new JTextField(30);
-		JTextField vertenteField = new JTextField(30);
+		this.nomeField = new JTextField(30);
+		this.cpfField = new JTextField(30);
+		this.matriculaField = new JTextField(30);
+		this.vertenteField = new JTextField(30);
 
 		JButton cadastrar = new JButton("Cadastrar");
+		cadastrar.addActionListener(cadastroListener);
 		
 		c.ipady = 10;
 		c.ipadx = 50;
@@ -58,6 +69,15 @@ public class Cadastro extends JPanel {
 		c.weightx = 0.1;
 		c.insets =new Insets(0, 0, 10, 0);
 		this.add(cadastrar,c);
+	}
+	
+	public Aluno getEstado() {
+		return new Aluno(
+				this.nomeField.getText(), 
+				this.cpfField.getText(), 
+				this.matriculaField.getText(), 
+				this.vertenteField.getText()
+				);
 	}
 }
 

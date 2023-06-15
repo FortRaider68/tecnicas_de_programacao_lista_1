@@ -1,14 +1,17 @@
 package controller;
-import listeners.MostrarCadastro;
-import listeners.MostrarLista;
+import listeners.*;
 import presentation.Tela;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Tela tela = new Tela();
-		new MostrarCadastro(tela);
-		new MostrarLista(tela, new AlunoController());
+		AlunoController controller = new AlunoController(tela);
+		new MostrarCadastro(tela,controller);
+		new MostrarLista(tela, controller);
+		new MostrarAtualizar(tela);
+		new MostrarDeletar(tela);
+		new Cadastrar(controller);
 	}
 
 }
