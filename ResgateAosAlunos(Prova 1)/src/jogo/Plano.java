@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import jogadores.Robo;
 import npcs.Aluno;
 import npcs.Bug;
+import presentation.Prompt;
 import presentation.Tela;
 
 public class Plano {
@@ -14,9 +15,27 @@ public class Plano {
 	private int tamanhoY;
 
 	public Plano(int tamanhoX, int tamanhoY) {
-		setPlanoDimensoes(tamanhoX, tamanhoY);
+		this.setPlanoDimensoes(tamanhoX, tamanhoY);
 		this.tamanhoX = tamanhoX;
 		this.tamanhoY = tamanhoY;
+	}
+	
+	public Plano(String[] dimensoes, Prompt prompt) {
+		try {
+			int x = Integer.parseInt(dimensoes[0]);
+			int y = Integer.parseInt(dimensoes[1]);
+			if(x < 7 || y < 7) {
+				x = 7;
+				y = 7;
+			}
+			this.setPlanoDimensoes(x, y);
+			this.tamanhoX = x;
+			this.tamanhoY = y;
+		} catch (Exception e) {
+			Tela.setMessage("Entrada Invalida. Usando as dimensões padrão (7x7).");
+			prompt.imprimir();
+		}
+		
 	}
 	
 	public void instanciarNPCs(int nAlunos, int nBugs) {
@@ -72,6 +91,15 @@ public class Plano {
 				contador++;
 			}
 		}
+	}
+	
+	public Celula getCelula(int id) {
+		for (int i = 0; i < listaCelulas.size(); i++) {
+			Celula aux = listaCelulas.get(i);
+			if(aux.getId() == id)
+				return aux;
+		}
+		return null;
 	}
 	
 	public Celula getCelula(int x, int y) {

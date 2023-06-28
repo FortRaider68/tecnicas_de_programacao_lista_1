@@ -16,7 +16,7 @@ public class TelaRodada extends Tela {
 		this.plano = plano;
 		this.jogo = jogo;
 		this.roboDaVez ="";
-		this.revelio = false;
+		this.revelio = true;
 	}
 	
 	public void imprimir() {

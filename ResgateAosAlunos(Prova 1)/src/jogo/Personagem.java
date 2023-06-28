@@ -6,6 +6,7 @@ public abstract class Personagem {
 	private int id;
 	private String nome;
 	private char simbolo;
+	private Coordenadas coordenadas;
 	private int posicaox;
 	private int posicaoy;
 	protected Plano plano;
@@ -29,6 +30,10 @@ public abstract class Personagem {
 		sortearPosicao();
 	}
 
+	public Coordenadas getCoordenadas() {
+		return coordenadas;
+	}
+
 	public char getSimbolo() {
 		return simbolo;
 	}
@@ -47,6 +52,7 @@ public abstract class Personagem {
 
 	public void setPosicaox(int posicaox) {
 		this.posicaox = posicaox;
+		this.coordenadas.setX(posicaox);
 	}
 	
 	public int getPosicaoy() {
@@ -55,6 +61,7 @@ public abstract class Personagem {
 	
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
+		this.coordenadas.setY(posicaoy);
 	}
 
 	public int getId() {
@@ -90,6 +97,10 @@ public abstract class Personagem {
 
 	public void setCelula(Celula celula) {
 		this.celula = celula;
+	}
+
+	public void setCoordenadas(Coordenadas coordenadas) {
+		this.coordenadas = coordenadas;
 	}
 	
 }

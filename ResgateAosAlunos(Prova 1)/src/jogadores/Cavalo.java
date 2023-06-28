@@ -7,8 +7,10 @@ import jogo.Plano;
 public class Cavalo extends Robo {
 	
 	public Cavalo(int posicaox, int posicaoy, Plano plano) {
-		super(4, "Cavalo", new Coordenadas(posicaox, posicaoy), plano,'C');
+		super(1, "Cavalo", new Coordenadas(posicaox, posicaoy), plano,'C');
 		posicaox+=getId();
+		this.setNumeroDePassos(2);
+		this.setPasso(new Coordenadas(1, 1));
 		this.deslocar(new Coordenadas(posicaox, posicaoy));
 	}
 

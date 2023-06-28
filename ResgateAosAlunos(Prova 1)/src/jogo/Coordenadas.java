@@ -1,5 +1,8 @@
 package jogo;
 
+import jogadores.Robo;
+import presentation.Tela;
+
 public class Coordenadas {
 	private int X;
 	private int Y;
@@ -9,6 +12,29 @@ public class Coordenadas {
 		X = x;
 		Y = y;
 	}
+	
+	public Coordenadas(String []tokensEntrada, Robo robo) {
+		this.X = 0;
+		this.Y = 0;
+		Coordenadas coordenadas = new Coordenadas(X, Y);
+		try {
+			int acao = Integer.parseInt(tokensEntrada[0]);
+			int ncelulas = Math.abs(Integer.parseInt(tokensEntrada[1]));
+			
+			if(acao == 1) {//avançar
+				coordenadas = robo.avancar(ncelulas);
+			}else if(acao == 2) {//retroceder
+				coordenadas = robo.retroceder(ncelulas);
+			}else {
+				Tela.setMessage("Ação invalida.");
+			}
+		} catch (Exception e) {
+			Tela.setMessage("Comando Invalido.");
+		}
+		this.X = coordenadas.getX();
+		this.Y = coordenadas.getY();
+	}
+	
 	public int getX() {
 		return X;
 	}
@@ -22,5 +48,8 @@ public class Coordenadas {
 		Y = y;
 	}
 	
-	
+	public double magnitude() {
+		double magnitude = Math.floor(Math.pow(Math.round(Math.pow(this.X,2)+Math.pow(this.Y,2)),0.5));
+		return magnitude;
+	}
 }

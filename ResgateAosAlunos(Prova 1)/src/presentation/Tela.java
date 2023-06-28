@@ -8,7 +8,6 @@ public abstract class Tela {
 	private static String message;
 	
 	public Tela() {
-		super();
 		entrada = new Scanner(System.in);
 	}
 	

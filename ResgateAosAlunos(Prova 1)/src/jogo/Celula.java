@@ -7,28 +7,24 @@ public class Celula {
 	private int posicaoX;
 	private int posicaoY;
 	private int id;
+	private Coordenadas coordenadas;
 	private ArrayList<Personagem> personagens;
 	private boolean marcada;
-	private char simbolo;
 	
 	public Celula(int id, int x , int y) {
 		this.posicaoX = x;
 		this.posicaoY = y;
+		this.coordenadas = new Coordenadas(x, y);
 		this.id = id;
 		this.personagens = new ArrayList<Personagem>();
-		this.simbolo = '.';
 	}
-	
+
 	public boolean isMarcada() {
 		return marcada;
 	}
 
 	public void setMarcada(boolean marcada) {
 		this.marcada = marcada;
-	}
-
-	public char getSimbolo() {
-		return this.simbolo;
 	}
 	
 	public String imprimir() {
@@ -41,6 +37,14 @@ public class Celula {
 
 	public int getPosicaoY() {
 		return posicaoY;
+	}
+	
+	public Coordenadas getCoordenadas() {
+		return coordenadas;
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 	public ArrayList<Personagem> getPersonagem() {

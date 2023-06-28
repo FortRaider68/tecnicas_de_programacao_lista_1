@@ -2,7 +2,14 @@ package jogo;
 
 import java.util.ArrayList;
 
+import jogadores.Andador;
+import jogadores.Bispo;
+import jogadores.Cavalo;
+import jogadores.Peao;
+import jogadores.Rainha;
+import jogadores.Rei;
 import jogadores.Robo;
+import jogadores.Torre;
 import presentation.DesfechoRodada;
 import presentation.Tela;
 import presentation.TelaRodada;
@@ -23,6 +30,36 @@ public class Rodada {
 		this.bugsOcorridos = 0;
 		this.desfechoRodada = new DesfechoRodada(this.plano, this);
 		this.quadranteTela = new TelaRodada(this.plano, this.jogo);
+	}
+	
+	public void spawnRobosCLI() {
+		int gap = (plano.getTamanhoX() - this.jogo.getQuantidadeRobos())/2;
+		Robo andador = new Andador(gap, 0, plano);
+		Robo peao = new Peao(gap, 0, plano);
+		Robo torre = new Torre(gap, 0, plano);
+		Robo bispo = new Bispo(gap, 0, plano);
+		Robo cavalo = new Cavalo(gap, 0, plano);
+		Robo rei = new Rei(gap,0, plano);
+		Robo rainha = new Rainha(gap, 0, plano);
+		
+		this.jogo.getRobos().add(andador);
+//		this.jogo.getRobos().add(peao);
+//		this.jogo.getRobos().add(torre);
+		this.jogo.getRobos().add(bispo);
+		this.jogo.getRobos().add(cavalo);
+//		this.jogo.getRobos().add(rei);
+		this.jogo.getRobos().add(rainha);
+	}
+	
+	public void spawnRobosGUI() {
+		int gap = (plano.getTamanhoX() - this.jogo.getQuantidadeRobos())/2;
+		Robo andador = new Andador(gap, 1, plano);
+		Robo cavalo = new Cavalo(gap, 1, plano);
+		Robo rainha = new Rainha(gap, 1, plano);
+		
+		this.jogo.getRobos().add(andador);
+		this.jogo.getRobos().add(cavalo);
+		this.jogo.getRobos().add(rainha);
 	}
 	
 	public int getAlunosResgatados() {
@@ -51,8 +88,10 @@ public class Rodada {
 				this.jogo.setExit(true);
 				return false;
 			}
-			Coordenadas coordenadasCelula = jogo.parserMovimento(robo, entrada);
+			Coordenadas coordenadasCelula = new Coordenadas(entrada,robo);
+			System.out.println(robo.magnitude(coordenadasCelula));
 			if(coordenadasCelula != null && robo.deslocar(coordenadasCelula)) {
+				
 				robo.passouPelaCelula();
 				robo.encontrouNPC();
 				i++;
@@ -62,6 +101,8 @@ public class Rodada {
 		}
 		estadoDesfecho();
 		desfechoRodada.imprimir();
+		this.alunosResgatados = 0;
+		this.bugsOcorridos = 0;
 		Tela.setMessage("");
 		return true;
 	}

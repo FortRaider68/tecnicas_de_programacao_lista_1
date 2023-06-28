@@ -9,6 +9,8 @@ public class Bispo extends Robo {
 	public Bispo(int posicaox, int posicaoy, Plano plano) {
 		super(3, "Bispo", new Coordenadas(posicaox, posicaoy), plano,'B');
 		posicaox+=getId();
+		this.setNumeroDePassos(2);
+		this.setPasso(new Coordenadas(-1, 1));
 		this.deslocar(new Coordenadas(posicaox, posicaoy));
 	}
 

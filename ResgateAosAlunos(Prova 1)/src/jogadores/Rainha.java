@@ -6,8 +6,10 @@ import jogo.Plano;
 
 public class Rainha extends Robo {
 	public Rainha(int posicaox, int posicaoy, Plano plano) {
-		super(6, "Rainha", new Coordenadas(posicaox, posicaoy), plano,'Q');
+		super(2, "Rainha", new Coordenadas(posicaox, posicaoy), plano,'Q');
 		posicaox+=getId();
+		this.setNumeroDePassos(4);
+		this.setPasso(new Coordenadas(-1, 1));
 		this.deslocar(new Coordenadas(posicaox, posicaoy));
 	}
 	
